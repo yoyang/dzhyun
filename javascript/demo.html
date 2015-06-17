@@ -30,22 +30,6 @@
 </div>
 
 <script charset="utf-8" type="text/javascript">
-    //获得访问参数
-    function QueryString(val) {
-        var uri = window.location.search;
-        var re = new RegExp("" +val+ "=([^&?]*)", "ig");
-        return ((uri.match(re))?(uri.match(re)[0].substr(val.length+1)):null);
-    }
-    //调用方法获得参数
-    var str = QueryString('show_first_resp');
-    if(str && str === '0'){
-        show_first_resp = false;
-    }
-    str = QueryString("request");
-    if(str){
-        str  = UrlDecode(str)
-        document.getElementById('RequestCode').value = str;
-    }
     //初始化websocket
     initWebsocket();
 </script>
