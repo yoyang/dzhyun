@@ -50,7 +50,8 @@ int main( int  argc , char ** argv )
 
         cout<<"按任意键发送请求，并开始接收数据..."<<endl;
         getchar();
-        string strUrl = "/json/quote/dyna?where=obj=SH600000.stk&response_times=-1"        cout<<"send msg = "<<strUrl.c_str()<<endl;
+        string strUrl = "/json/quote/dyna?where=obj=SH600000.stk&response_times=-1";
+        cout<<"send msg = "<<strUrl.c_str()<<endl;
         mEndPoint.send(wsCon->get_handle(), strUrl, websocketpp::frame::opcode::binary, ec);
         if (ec) {
             std::cout << "> Error sending message: " << ec.message() << std::endl;
