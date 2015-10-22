@@ -18,7 +18,7 @@ using websocketpp::lib::placeholders::_2;
 using websocketpp::lib::bind;
 
 void on_message(WSClient* c, websocketpp::connection_hdl hdl, message_ptr msg) {
-        if (msg->get_opcode() == websocketpp::frame::opcode::text) {
+        if (msg->get_opcode() == websocketpp::frame::opcode::binary) {
             cout<<"recv req msg = "<<msg->get_payload()<<endl;
         } else {
             cout<<"recv push msg"<<msg->get_payload()<<endl;
@@ -51,7 +51,7 @@ int main( int  argc , char ** argv )
         cout<<"按任意键发送请求，并开始接收数据..."<<endl;
         getchar();
         string strUrl = "/json/quote/dyna?where=obj=SH600000.stk&response_times=-1"        cout<<"send msg = "<<strUrl.c_str()<<endl;
-        mEndPoint.send(wsCon->get_handle(), strUrl, websocketpp::frame::opcode::text, ec);
+        mEndPoint.send(wsCon->get_handle(), strUrl, websocketpp::frame::opcode::binary, ec);
         if (ec) {
             std::cout << "> Error sending message: " << ec.message() << std::endl;
             return -1;
@@ -61,7 +61,7 @@ int main( int  argc , char ** argv )
         getchar();
         string strCancel = "/json/cancel?0";
         cout<<"cancel url : "<<strCancel.c_str()<<endl;
-        mEndPoint.send(wsCon->get_handle(), strCancel, websocketpp::frame::opcode::text, ec);
+        mEndPoint.send(wsCon->get_handle(), strCancel, websocketpp::frame::opcode::binary, ec);
         if (ec) {
             std::cout << "> Error sending message: " << ec.message() << std::endl;
             return -1;
